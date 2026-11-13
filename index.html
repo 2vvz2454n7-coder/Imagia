@@ -131,20 +131,14 @@ document.querySelector('#creator').addEventListener('submit', async function(e) 
     try {
         const response = await fetch('https://imagia-7t2e.onrender.com/create', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                idea: idea,
-                duration: duration,
-                format: format
-            })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({idea, duration, format})
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data.error || 'Une erreur est survenue.');
+            throw new Error(data.error || 'Erreur serveur');
         }
 
         message.textContent = '✅ Ton idée a bien été reçue par le serveur IMAGIA !';
